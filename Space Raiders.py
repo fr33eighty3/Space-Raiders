@@ -52,14 +52,14 @@ alienX = []
 alienY = []
 alienX_change = []
 alienY_change = []
-num_of_aliens = 10
+num_of_aliens = 15
 
 for i in range(num_of_aliens):
     alienImg.append(pygame.image.load('alien.png'))
     alienX.append(random.randint(0,735))
-    alienY.append(random.randint(50,150))
+    alienY.append(random.randint(50,100))
 
-    alienX_change.append(2)
+    alienX_change.append(5)
     alienY_change.append(40)
 
 # BULLET #
@@ -68,7 +68,7 @@ bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
 bulletY = 480
 bulletX_change = 0
-bulletY_change = 10
+bulletY_change = 15
 bullet_state = "ready"
 
 
@@ -128,9 +128,9 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                    playerX_change -= 3
+                    playerX_change -= 10
             if event.key == pygame.K_RIGHT:
-                    playerX_change += 3
+                    playerX_change += 10
             if event.key == pygame.K_SPACE:
                 if bullet_state is "ready":
                     bullet_Sound = mixer.Sound('laser.wav')
@@ -168,10 +168,10 @@ while running:
 
         alienX[i] += alienX_change[i]
         if alienX[i] <= 0:
-            alienX_change[i] = 2
+            alienX_change[i] = 6
             alienY[i] += alienY_change[i] 
         elif alienX[i] >= 736:
-            alienX_change[i] = -2
+            alienX_change[i] = -6
             alienY[i] += alienY_change[i]
 
         
@@ -187,7 +187,7 @@ while running:
             score_value += 1
             print(score_value)
             alienX[i] = random.randint(0,735)
-            alienY[i] = random.randint (50,150)
+            alienY[i] = random.randint (150,250)
 
         alien(alienX[i],alienY[i],i)  
 
